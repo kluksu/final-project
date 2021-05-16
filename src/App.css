@@ -74,3 +74,14 @@ a.carousel-control-next{
   opacity: 0.9;
 }
 
+.picturesUpload{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+
+}
+.picturesUpload > img{
+  width: 200px;
+  margin: 15px;
+}
+

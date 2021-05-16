@@ -14,6 +14,7 @@ import Login from './components/Login';
 
 import React, { Component } from 'react'
 import MyNavBar from './components/MyNavBar';
+import UploadItems from './components/UploadItems';
 
 export default class App extends Component {
   constructor(props){
@@ -94,7 +95,9 @@ this.setState({activeUser:element})
         <Route exact path="/Signupcompleted" >
         </Route>
         </Route>
-
+        <Route exact path="/uploaditems" >
+        <UploadItems></UploadItems>
+      </Route>
       
 
 
