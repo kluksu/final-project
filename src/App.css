@@ -96,3 +96,11 @@ a.carousel-control-next{
   display: flex;
   flex-direction: row;
 }
+.smartSearchBox{
+  display: flex;
+  justify-content: center;
+align-items: center;}
+.smartSearch{
+   width: 50vw !important;
+   margin-bottom: 31px !important;}
+ 

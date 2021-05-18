@@ -23,11 +23,20 @@ export default class App extends Component {
       users:[],
       products:[],
       activeUser:"",
-      productID:0
+      activeStore:'',
+      productID:0,
+      searchText:""
     
 
     }
   }
+
+  getText=(event)=>{
+    this.setState({searchText:event.target.value})
+    console.log(event.target.value)
+    }
+  
+   
   updateProducts=(productData)=>{
 
 
@@ -110,7 +119,7 @@ this.setState({activeUser:element})
     <MyNavBar logout={this.logout} activeUser={this.state.activeUser} ></MyNavBar>
 
     <Route exact path="/">
-      <HomePage activeUser={this.state.activeUser} products={this.state.products}></HomePage>
+      <HomePage getText={this.getText} activeUser={this.state.activeUser} products={this.state.products}></HomePage>
        </Route>
       <Route exact path="/Features">
       <Features></Features>
@@ -129,6 +138,7 @@ this.setState({activeUser:element})
         <Route exact path="/uploaditems" >
         <UploadItems activeUser={this.state.activeUser} updateProducts={this.updateProducts}></UploadItems>
       </Route>
+      
       
 
 

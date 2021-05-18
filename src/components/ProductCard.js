@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Card } from 'react-bootstrap'
+import { Button, Card, Nav } from 'react-bootstrap'
 
 export default class ProductCard extends Component {
     componentDidMount(){
@@ -16,8 +16,8 @@ export default class ProductCard extends Component {
   <Card.Body>
     <Card.Title>{this.props.product.itemName}</Card.Title>
     {priceShown}
-    <Button variant="primary">Go to store</Button>
-  </Card.Body>
+    <Nav.Link href="/#/store" >go to store</Nav.Link>
+     </Card.Body>
 </Card>
             </div>
         )
