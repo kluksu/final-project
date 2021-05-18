@@ -84,4 +84,15 @@ a.carousel-control-next{
   width: 200px;
   margin: 15px;
 }
+.card-body{
+  background-color: whitesmoke;
+}
+.card{
+  border: none !important;
+  margin: auto;
+}
 
+.productsGallery{
+  display: flex;
+  flex-direction: row;
+}

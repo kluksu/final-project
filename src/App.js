@@ -22,11 +22,41 @@ export default class App extends Component {
     this.state={
       users:[],
       products:[],
-      activeUser:""
+      activeUser:"",
+      productID:0
     
 
     }
   }
+  updateProducts=(productData)=>{
+
+
+let product=  [{
+  fieldsArr:productData.fieldsArr,
+  quantity:productData.quantity,
+  unit:productData.unit,
+  itemName:productData.itemName,
+  batch:productData.batch,
+  minimum:productData.minimum,
+  price:productData.price,
+  newFieldsArr:productData.newFieldsArr,
+  id:this.state.productID,
+  picturesArr:productData.picturesArr,
+  user:this.state.activeUser.userName
+
+ 
+   
+ }]
+ console.log(product)
+ this.setState({productID:this.state.productID+1})
+ this.setState({products:this.state.products.concat(product)})
+}
+componentDidUpdate(prevProps,prevState){
+  if(this.state.products!==prevState.products){
+    console.log(this.state.products)
+  }
+}
+
   componentDidUpdate(prevProps,prevState){
     if(this.state.users!==prevState.users){
       console.log(this.state.users)
@@ -34,6 +64,7 @@ export default class App extends Component {
   }
   logout=()=>{
     this.setState({activeUser:""})
+    console.log(this.state.activeUser)
   }
   activateUser=(userdata)=>{
 for (let i = 0; i < this.state.users.length; i++) {
@@ -79,7 +110,7 @@ this.setState({activeUser:element})
     <MyNavBar logout={this.logout} activeUser={this.state.activeUser} ></MyNavBar>
 
     <Route exact path="/">
-      <HomePage activeUser={this.state.activeUser}></HomePage>
+      <HomePage activeUser={this.state.activeUser} products={this.state.products}></HomePage>
        </Route>
       <Route exact path="/Features">
       <Features></Features>
@@ -96,7 +127,7 @@ this.setState({activeUser:element})
         </Route>
         </Route>
         <Route exact path="/uploaditems" >
-        <UploadItems></UploadItems>
+        <UploadItems activeUser={this.state.activeUser} updateProducts={this.updateProducts}></UploadItems>
       </Route>
       
 
