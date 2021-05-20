@@ -5,7 +5,12 @@ import './ProductDetailsPage.css';
 
 export default class ProductDetailsPage extends Component {
     render() {
-       
+      let visibleFieldsArr=[]
+      for (let i = 0; i <  this.props.selectedProduct.newFieldsArr.length; i++) {
+        const element = this.props.selectedProduct.newFieldsArr[i];
+        visibleFieldsArr.push(<tr><td>{element.fieldName}</td><td>{element.specifics}</td></tr>)
+      }
+
         return (
             <div className="productPage"> 
         <div className="gallery"> {this.props.selectedProduct.picturesArr}</div>  
@@ -44,10 +49,8 @@ export default class ProductDetailsPage extends Component {
       <td>Minimum batches per order</td>
       <td>{this.props.selectedProduct.minimum}</td>
     </tr>
-
-
-  
-  </tbody>
+    {visibleFieldsArr}
+    </tbody>
 </Table>
 </Container>
             </div>

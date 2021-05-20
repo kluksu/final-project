@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Col, Form, Row } from 'react-bootstrap'
+import { Button, Col, Form, Row, Table } from 'react-bootstrap'
 
 export default class CreateNewField extends Component {
     constructor(props){
@@ -8,12 +8,13 @@ export default class CreateNewField extends Component {
             fieldName:"",
             sepcifics: "deteils",
             key:0
+            
 
 
         }
     } 
      
-    
+     
      
     changeFieldName=(event)=>{
         this.setState({fieldName:event.target.value})
@@ -24,6 +25,15 @@ export default class CreateNewField extends Component {
         console.log(this.state.sepcifics)
     }
     render() {
+         let newFieldTable=[]
+         if(this.props.newFieldsArr!==0){
+        for (let i = 0; i < this.props.newFieldsArr.length; i++) {
+            const element = this.props.newFieldsArr[i];
+            console.log(element)
+            newFieldTable.push(<tr><td>{element.fieldName}</td> <td>{element.specifics}</td></tr>)
+        }
+        }
+
         
         return (
         <Row>
@@ -52,8 +62,16 @@ export default class CreateNewField extends Component {
             <Button className="createNewFieldsBtn"  onClick={()=>this.props.updatefield({fieldName:this.state.fieldName,specifics:this.state.sepcifics})}   variant="primary" type="button">
             add new field name {this.state.fieldName}         
             </Button>
+           
 
             </Col>
-            </Row>        )
+             <Table striped bordered hover size="xl">
+             <tbody>
+ 
+           {newFieldTable}
+           </tbody>
+ 
+             </Table>              </Row>  
+    )
         }
 }

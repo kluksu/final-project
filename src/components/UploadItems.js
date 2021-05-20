@@ -165,7 +165,7 @@ export default class UploadItems extends Component {
   
   </Row>
   <Row> 
-  <CreateNewField updatefield={this.updatefield}></CreateNewField>
+  <CreateNewField updatefield={this.updatefield}             newFieldsArr={this.state.newFieldsArr}></CreateNewField>
   
   
   
