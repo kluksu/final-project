@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
-import CreateNewField from './CreateNewField'
+import CreateNewField from './createNewFields/CreateNewField'
+
 
 export default class UploadItems extends Component {
     constructor(props){
@@ -17,13 +18,15 @@ export default class UploadItems extends Component {
             currentPicture:"",
             picturesArr:[],
             newFieldsArr:[],
-            formID:0
+            formID:0,
+            
 
            
 
 
         }
     }
+   
   
   //  deleteForm=(event)=>{
         
@@ -33,40 +36,29 @@ export default class UploadItems extends Component {
         ///  const result = this.state.fieldsArr.filter( field=> event !== i);
          // console.log(result)
 
-            
-        
+    
     
     updatefield=(fieldData)=>{
 
 
         let field=  [{
             fieldName:fieldData.fieldName,
-          specifics:fieldData.specifics,
-         
-         
-           
+          specifics:fieldData.specifics, 
          }]
-       
          this.setState({newFieldsArr:this.state.newFieldsArr.concat(field)});
-
          console.log(this.state.newFieldsArr)
    
         }
   
-     getFields=()=>{
-
-       let  arr=[]
-        arr.push(<><CreateNewField deleteForm={this.deleteForm} updatefield={this.updatefield} formID={this.state.formID}></CreateNewField>
-        </>)
-        this.setState({formID:this.state.formID + 1})
-        this.setState({fieldsArr:this.state.fieldsArr.concat(arr)})
-    }
+     
     componentDidUpdate(prevProps,prevState){
-        if(this.state.currentPicture!==prevState.currentPicture){
+        if((this.state.currentPicture!==prevState.currentPicture)||(this.state.fieldDisabled!==prevState.fieldDisabled)){
         let arr=[];
-        arr.push(<img src="https://i.picsum.photos/id/65/200/200.jpg?hmac=pZrTO_F80X2VYUVpgorpj6xM_WABGhjIXYieK__8B50"  //{`${this.state.currentPicture}`}
+        arr.push(<img  src="https://i.picsum.photos/id/65/200/200.jpg?hmac=pZrTO_F80X2VYUVpgorpj6xM_WABGhjIXYieK__8B50"  //{`${this.state.currentPicture}`}
         ></img>)
         this.setState({picturesArr:this.state.picturesArr.concat(arr)})}
+       
+
     }
     getPic=(event)=>{
         this.setState({currentPicture:event.target.value})
@@ -131,7 +123,7 @@ export default class UploadItems extends Component {
 <Col xl={6} sm={12}>
   <Form.Group controlId="formGridMOQ">
     <Form.Label>minimum order quantity (batches)</Form.Label>
-    <Form.Control onChange={this.changeMinimum} type="number" placeholder="MOQ" />
+    <Form.Control  onChange={this.changeMinimum} type="number" placeholder="MOQ" />
   </Form.Group>
   </Col>
   <Col xl={6} sm={12}>
@@ -170,24 +162,20 @@ export default class UploadItems extends Component {
   <Row>
       <Col xl={2}>
       </Col>
-  <Col xl={10} xs={2}>
-  {this.state.fieldsArr}  
-  </Col>
+  
   </Row>
   <Row> 
+  <CreateNewField updatefield={this.updatefield}></CreateNewField>
   
-      <Col xl={2} xs={2}>
-  <Button onClick={this.getFields} variant="primary" type="button">
-      add costume field
-  </Button>
-  </Col>
   
   
   </Row>
 
   
-
-  <Button onClick={()=>this.props.updateProducts({
+  <Row> 
+      <Col xl={4} ></Col>
+      <Col xl={4} sm={12}>
+      <Button className="submitItembtn" onClick={()=>this.props.updateProducts({
         fieldsArr:this.state.fieldsArr,
         quantity:this.state.quantity,
         unit:this.state.unit,
@@ -202,6 +190,9 @@ export default class UploadItems extends Component {
   })} variant="primary" type="button">
     Submit
   </Button>
+  </Col>
+  </Row>
+ 
 </Form>
 </Container>
             </div>

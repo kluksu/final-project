@@ -8,21 +8,24 @@ export default class CardsPage extends Component {
        super(props)
        this.state={
            CardsArr:[],
+           
        }
    }
+ 
   
 
     render() {
         let  Arr=[]
-       
-        if(this.props.products.length>=1){
+        if((this.props.products.length>=1)){
+         
         for (let i = 0; i < this.props.products.length; i++) {
             const element = this.props.products[i];
+            if(element.itemName.includes(this.props.searchText)){
 
-        Arr.push( <Col xl={3} lg={4} md={6} sm={12}><ProductCard  activeUser={this.props.activeUser} product={element}></ProductCard></Col>)
+        Arr.push( <Col xl={3} lg={4} md={6} sm={12}><ProductCard selectedProduct={this.props.selectedProduct} getStore={this.props.getStore}  products={this.props.products} selectedStore={this.props.selectedStore} activeUser={this.props.activeUser} product={element}></ProductCard></Col>)
             
       
-    }
+    }}
 
     return (<>
   <SmartSearch getText={this.props.getText} ></SmartSearch>

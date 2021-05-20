@@ -8,6 +8,8 @@ import Pricing from './components/Pricing';
 import About from './components/About';
 import Signup from './components/Signup';
 import Login from './components/Login';
+import Store from './components/Store';
+
 
 
 
@@ -15,27 +17,64 @@ import Login from './components/Login';
 import React, { Component } from 'react'
 import MyNavBar from './components/MyNavBar';
 import UploadItems from './components/UploadItems';
+import ProductDetailsPage from './components/ProductDetailsPage/ProductDetailsPage';
 
 export default class App extends Component {
   constructor(props){
     super(props)
     this.state={
-      users:[],
+      users: [{
+        email: "shriki18@hotmail.com",
+        password:"111",
+        phone_number:"0507780982",
+        userName:"kluksu",
+        address:"ghiugiugigigigig",
+        accountType:"seller"
+        
+      }],
       products:[],
-      activeUser:"",
+      activeUser: {
+        email: "shriki18@hotmail.com",
+        password:"111",
+        phone_number:"0507780982",
+        userName:"kluksu",
+        address:"ghiugiugigigigig",
+        accountType:"seller"
+        
+      },
       activeStore:'',
       productID:0,
-      searchText:""
+      searchText:"",
+      selectedStore:"",
+      selectedProduct:""
+
     
 
     }
   }
+ 
+  componentDidUpdate(prevProps,prevState){
+    console.log(this.state.selectedProduct)
+
+
+}
+selectedProduct=(item)=>{
+  let product=item.product
+this.setState({selectedProduct:product})
+}
+
+getStore=(store)=>{
+    let user=store.user
+ this.setState({selectedStore:user})
+ }
+
+ 
 
   getText=(event)=>{
     this.setState({searchText:event.target.value})
-    console.log(event.target.value)
+    console.log(this.state.searchText)
     }
-  
+    
    
   updateProducts=(productData)=>{
 
@@ -60,17 +99,7 @@ let product=  [{
  this.setState({productID:this.state.productID+1})
  this.setState({products:this.state.products.concat(product)})
 }
-componentDidUpdate(prevProps,prevState){
-  if(this.state.products!==prevState.products){
-    console.log(this.state.products)
-  }
-}
 
-  componentDidUpdate(prevProps,prevState){
-    if(this.state.users!==prevState.users){
-      console.log(this.state.users)
-    }
-  }
   logout=()=>{
     this.setState({activeUser:""})
     console.log(this.state.activeUser)
@@ -110,8 +139,7 @@ this.setState({activeUser:element})
 
 
   
-
-  
+    
   render() {
     return (
  <HashRouter>
@@ -119,7 +147,7 @@ this.setState({activeUser:element})
     <MyNavBar logout={this.logout} activeUser={this.state.activeUser} ></MyNavBar>
 
     <Route exact path="/">
-      <HomePage getText={this.getText} activeUser={this.state.activeUser} products={this.state.products}></HomePage>
+      <HomePage getText={this.getText} getStore={this.getStore}  activeUser={this.state.activeUser} searchText={this.state.searchText}  products={this.state.products}></HomePage>
        </Route>
       <Route exact path="/Features">
       <Features></Features>
@@ -138,7 +166,17 @@ this.setState({activeUser:element})
         <Route exact path="/uploaditems" >
         <UploadItems activeUser={this.state.activeUser} updateProducts={this.updateProducts}></UploadItems>
       </Route>
+      <Route exact path={`/store/${this.state.selectedStore}`}>
+      <Store getText={this.getText} logout={this.logout} selectedProduct={this.selectedProduct} activeUser={this.state.activeUser} searchText={this.state.searchText} selectedStore={this.state.selectedStore}  products={this.state.products}></Store>
+       </Route>
+       <Route exact path={`/store/${this.state.selectedStore}/x${this.state.selectedProduct.itemName}`}>
+         <ProductDetailsPage selectedProduct={this.state.selectedProduct}></ProductDetailsPage>
+       </Route>
+
+       
       
+
+  
       
 
 

@@ -10,8 +10,11 @@ export default class HomePage extends Component {
         super(props)
         this.state={
             CardsArr:[],
+            selectedStore:""
+
         }
     }
+ 
 
     render() {
         return (
@@ -19,7 +22,7 @@ export default class HomePage extends Component {
                 <div fade    className=" d-flex   w-30">
                     <Container>
                     <Row>
-                        <CardsPage className="productsGallery" getText={this.props.getText} activeUser={this.props.activeUser} products={this.props.products}></CardsPage>
+                        <CardsPage className="productsGallery" getStore={this.props.getStore}  getText={this.props.getText} searchText={this.props.searchText} activeUser={this.props.activeUser} products={this.props.products}></CardsPage>
                     </Row>
                     </Container>
   

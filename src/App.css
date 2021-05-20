@@ -42,7 +42,11 @@
   }
 
 }  
-
+.createNewFieldsBtn.btn.btn-primary{
+ margin-top:20px !important;
+ width: 100%;
+ margin:auto
+}
 
 div.d-block.w-35.carousel.slide.carousel-fade::before{
   display: flex;
@@ -103,4 +107,5 @@ align-items: center;}
 .smartSearch{
    width: 50vw !important;
    margin-bottom: 31px !important;}
+  
  

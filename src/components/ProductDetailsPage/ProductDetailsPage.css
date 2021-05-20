@@ -1,0 +1,15 @@
+*{
+    box-sizing: border-box;
+}
+.gallery{
+    display: flex;
+    justify-content: space-evenly;
+    padding:30px;
+    flex-wrap: wrap;
+ }
+ .gallery > img{
+margin:30px
+}
+
+
+

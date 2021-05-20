@@ -7,10 +7,13 @@ export default class CreateNewField extends Component {
         this.state={
             fieldName:"",
             sepcifics: "deteils",
-            key:this.props.formID
+            key:0
+
 
         }
-    }
+    } 
+     
+    
      
     changeFieldName=(event)=>{
         this.setState({fieldName:event.target.value})
@@ -21,43 +24,36 @@ export default class CreateNewField extends Component {
         console.log(this.state.sepcifics)
     }
     render() {
+        
         return (
-            <Col xl={10} sm={10}>
-<Row>
-<Col xl={6} xs={6}>
-
-                  <Form.Group controlId="formBasicNieldName">
+        <Row>
+                          <Col xl={6} sm={12}>
+     <Form.Group controlId="formBasicNieldName">
     <Form.Label>field name</Form.Label>
-    <Form.Control onChange={this.changeFieldName}     type="text" placeholder="Enter the new field name" />
+    <Form.Control onChange={this.changeFieldName}     type="text"    placeholder="Enter the new field name" />
     <Form.Text className="text-muted">
         color, width, size, ect..
     </Form.Text>
   </Form.Group>
   </Col>
-  <Col xl={6} xs={6}>
-
+  
+  <Col xl={6} sm={12}>
   <Form.Group controlId="formBasicNieldName">
     <Form.Label>sepcifics name</Form.Label>
-    <Form.Control onChange={this.changeFieldSepcifics}   type="text" placeholder="Enter the sepcifics name" />
+    <Form.Control onChange={this.changeFieldSepcifics}    type="text" placeholder="Enter the sepcifics name"  />
     <Form.Text className="text-muted">
         blue, lg, 10 cm ect.. 
     </Form.Text>
   </Form.Group>
   </Col>
-  <Col xl={2} xs={2}>
-            <Button  onClick={()=>this.props.updatefield({fieldName:this.state.fieldName,specifics:this.state.sepcifics})}   variant="primary" type="button">
-            add {this.state.fieldName}         
-            </Button>
-            </Col>
-            <Col xl={2} xs={2}>
-            <Button onClick={()=>this.props.deleteForm({formID:this.props.formID})}   variant="primary" type="button">
-             delete {`${this.state.fieldName}`}       
-          </Button>
-            </Col>
-          
+  <Col  xl={4}></Col>
+  <Col xl={4} sm={12}>
 
-  </Row>
-</Col>
-        )
-    }
+            <Button className="createNewFieldsBtn"  onClick={()=>this.props.updatefield({fieldName:this.state.fieldName,specifics:this.state.sepcifics})}   variant="primary" type="button">
+            add new field name {this.state.fieldName}         
+            </Button>
+
+            </Col>
+            </Row>        )
+        }
 }
