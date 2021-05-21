@@ -2,7 +2,13 @@ import React, { Component } from 'react'
 import { NavDropdown } from 'react-bootstrap'
 
 export default class ShoppingCart extends Component {
+       
     render() {
+        for (let i = 0; i < this.props.products.length; i++) {
+            const element = this.props.products[i];
+            
+            
+        }
         return (
             <div>
                  <NavDropdown title="shopping cart" id="collasible-nav-dropdown">

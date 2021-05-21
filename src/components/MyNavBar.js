@@ -7,7 +7,7 @@ export default class MyNavBar extends Component {
   
   
     render() {
-      const shoppingcart=(this.props.activeUser.accountType==="buyer")? <> <MyAccount></MyAccount><ShoppingCart></ShoppingCart></>:<><MyAccount></MyAccount><Nav.Link href="/#/uploaditems">upload items</Nav.Link></>
+      const shoppingcart=(this.props.activeUser.accountType==="buyer")? <> <MyAccount activeUser={this.props.activeUser}></MyAccount><ShoppingCart activeUser={this.props.activeUser} products={this.props.products}></ShoppingCart></>:<><MyAccount></MyAccount><Nav.Link href="/#/uploaditems">upload items</Nav.Link></>
 
       const login=(!this.props.activeUser)? <Nav> <Nav.Link href="/#/signupSeller">signup</Nav.Link> <Nav.Link href="/#/Login">Login  </Nav.Link> </Nav>:null
       const logout=(this.props.activeUser)? <Nav>  
