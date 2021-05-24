@@ -108,4 +108,123 @@ align-items: center;}
    width: 50vw !important;
    margin-bottom: 31px !important;}
   
+ .cardWrep .card-body {
+   background-color: white!important;
+   margin:auto;
+padding: 0px !important;
+ }
+ .cardWrep {
+   background-color: white !important;
+   width:200px;
+   display: flex;
+   justify-content: center;
+ }
+ .cradCol.col-xl-3.col-lg-4.col-md-6.col-sm-12{
+background-color: rgba(255, 255, 255, 0.925) !important;
+   width: 258px !important;
+   display: flex;
+   justify-content: center;
+   padding: 20px;
+   margin:25px !important;
+   border-radius: 2%;
+   
+ }
  
+p.card-text{
+  padding: 0px;
+  margin-bottom: 0px;
+}
+.cardForm{
+  margin-top: 0px !important;
+
+}
+.cardForm > button{
+margin-bottom: 10px;
+}
+.galleryBackGround{
+  display: flex;
+  justify-content: center;
+  background-color: white;}
+ /* background: linear-gradient(223deg, rgb(235, 233, 233) 0%, rgba(239,239,244,1) 27%, rgb(236, 236, 236) 100%);
+  
+} /*(181deg, whitesmoke, whitesmoke, whitesmoke);
+  background-size: 600% 600%;
+
+  -webkit-animation: AnimationName 30s ease infinite;
+  -moz-animation: AnimationName 30s ease infinite;
+  animation: AnimationName 30s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0%{background-position:25% 0%}
+  50%{background-position:25% 100%}
+  100%{background-position:25% 0%}
+}
+@-moz-keyframes AnimationName {
+  0%{background-position:25% 0%}
+  50%{background-position:25% 100%}
+  100%{background-position:25% 0%}
+}
+@keyframes AnimationName {
+  0%{background-position:25% 0%}
+  50%{background-position:25% 100%}
+  100%{background-position:25% 0%}
+};*/
+
+
+.navbar-dark .navbar-nav .nav-link{
+  color:rgb(233, 233, 255) !important;
+}
+.colorRed{
+  color:red
+}
+.navbar{
+  padding: 16px
+}
+.smartSearchBox{
+  padding: 16px;
+  background-image: url("https://cdn.pixabay.com/photo/2018/03/10/09/49/city-3213676_1280.jpg");
+  padding: 100px;}
+.cardForm > .form-control{
+  margin:auto;
+  margin-bottom: 10px;
+  width: 50%;
+
+}
+.cardWrep .card-body{
+  background-color: rgb(255, 255, 255) !important ;
+}
+.card-img-top{
+  width: 250px;
+  border-radius: 2%;
+}
+.container{
+  background: linear-gradient(180deg, rgba(205,205,213,1) 0%, rgba(242,242,242,1) 40%, rgba(196,196,196,1) 100%) ;}
+
+.thanks{
+  background-image: url("https://cdn.pixabay.com/photo/2017/02/26/20/51/balloon-2101359_1280.jpg");
+  height: 600px;
+ padding: 50px;
+}
+.thanks > .container, .thanks > .container  .jumbotron{
+  border-radius: 2%;
+}
+button.w-100.btn.btn-primary{
+  margin-bottom: 20px;
+}
+.gallery{
+  margin-bottom: 0px !important;
+  padding-bottom: 0px !important;
+  background-image: url("https://images.pexels.com/photos/3255761/pexels-photo-3255761.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+}
+img{
+  border-radius: 5px !important;
+}
+.productPage{
+  background-image: url("https://images.pexels.com/photos/3255761/pexels-photo-3255761.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+height: 10000vh;
+}
+.formContainer{
+  background-image: url("https://images.pexels.com/photos/3255761/pexels-photo-3255761.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+padding: 20px !important;
+}

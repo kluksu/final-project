@@ -20,13 +20,18 @@ export default class Login extends Component {
         this.setState({password:event.target.value})
     }
    
+ componentDidUpdate(prevProps,prevState){
+     if(this.props.activeUser!==prevProps.activeUser){
+        window.location.replace("/#/") 
+     }
 
+ }
 
     render() {
     
         return (
-            <div>
-                                              <Container>
+            
+            <div className="formContainer" >
                 <Form>
                     <Row>
                         <Col xl={12} lg={6} md={12}>
@@ -57,7 +62,6 @@ export default class Login extends Component {
 
 
 </Form>
-</Container>
             </div>
         )
 

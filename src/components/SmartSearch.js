@@ -12,7 +12,6 @@ export default class SmartSearch extends Component {
     render() {
         return (
             <div>
-                     <Container>
 
                 <Form className="smartSearchBox">
   <Form.Group controlId="formBasicEmail">
@@ -28,7 +27,6 @@ export default class SmartSearch extends Component {
   </Button>
 
 </Form>
-</Container>
 
                 
             </div>

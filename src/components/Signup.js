@@ -60,8 +60,7 @@ export default class Signup extends Component {
        
          
         return (
-            <div>
-                                <Container>
+            <div className="formContainer">
                 <Form>
                     <Row>
                         <Col xl={6} lg={6} md={12}>
@@ -119,7 +118,7 @@ export default class Signup extends Component {
           id="seller"
         />
         <Form.Check
-          type="r  adio"
+          type="radio"
           label="buyer"
           name="formHorizontalRadios"
           id="buyer"
@@ -147,7 +146,6 @@ export default class Signup extends Component {
 
 
 </Form>
-</Container>
             </div>
         )
    

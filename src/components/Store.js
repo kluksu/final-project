@@ -11,9 +11,7 @@ export default class Store extends Component {
         super(props)
         this.state={
             CardsArr:[],
-        }
-    }////this is store!!! make logic to get rid of non store products using props
-
+        }}
     render() {
         let storeProductsArr=[]
         for (let i = 0; i < this.props.products.length; i++) {
@@ -28,11 +26,9 @@ export default class Store extends Component {
 
             <div>
                 <div fade    className=" d-flex   w-30">
-                    <Container>
                     <Row>
-                        <CardsPage className="productsGallery" selectedProduct={this.props.selectedProduct} selectedStore={this.props.selectedStore} getText={this.props.getText} searchText={this.props.searchText} activeUser={this.props.activeUser} products={storeProductsArr}></CardsPage>
+                        <CardsPage className="productsGallery" addCartItem={this.props.addCartItem} setBuyerQuantity={this.props.setBuyerQuantity} selectedProduct={this.props.selectedProduct} selectedStore={this.props.selectedStore} getText={this.props.getText} searchText={this.props.searchText} activeUser={this.props.activeUser} products={storeProductsArr}></CardsPage>
                     </Row>
-                    </Container>
   
 
               </div>

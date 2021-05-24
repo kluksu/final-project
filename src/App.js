@@ -18,6 +18,10 @@ import React, { Component } from 'react'
 import MyNavBar from './components/MyNavBar';
 import UploadItems from './components/UploadItems';
 import ProductDetailsPage from './components/ProductDetailsPage/ProductDetailsPage';
+import Checkout from './components/Checkout';
+import MyIncommingOrders from './MyIncommingOrders';
+import ThanksForRegistering from './components/ThanksForRegistering';
+
 
 export default class App extends Component {
   constructor(props){
@@ -29,9 +33,32 @@ export default class App extends Component {
         phone_number:"0507780982",
         userName:"kluksu",
         address:"ghiugiugigigigig",
+        accountType:"buyer"
+        
+      },{
+        email: "shriki618@hotmail.com",
+        password:"111",
+        phone_number:"0507780982",
+        userName:"ori",
+        address:"ghiugiugigigigig",
         accountType:"seller"
         
-      }],
+      },{
+        email: "elad@gmail.com",
+        password:"111",
+        phone_number:"0507780982",
+        userName:"elad",
+        address:"ghiugiugigigigig",
+        accountType:"seller"
+      },{
+        email: "hadar@gmail.com",
+        password:"111",
+        phone_number:"0507780982",
+        userName:"hadar",
+        address:"ghiugiugigigigig",
+        accountType:"seller"
+      }
+    ],
       products:[],
       activeUser: {
         email: "shriki18@hotmail.com",
@@ -39,29 +66,68 @@ export default class App extends Component {
         phone_number:"0507780982",
         userName:"kluksu",
         address:"ghiugiugigigigig",
-        accountType:"seller"
+        accountType:"buyer"
         
       },
       activeStore:'',
       productID:0,
       searchText:"",
       selectedStore:"",
-      selectedProduct:""
-
-    
+      selectedProduct:"",
+      buyerQuantity:0,
+      cart:[],
+      selectedCart:"",
+      orders:[], 
+      signupSubmited:false,
+      selectedOrder:""
+                            //{buyerQWAntity, product, status, activeuser}
 
     }
-  }
- 
-  componentDidUpdate(prevProps,prevState){
-    console.log(this.state.selectedProduct)
+}
 
+
+createOrder=(order)=>{
+   let ordersArr={newOrder:order.order,
+                  orderedFrom:this.state.activeUser,
+                    buyerQuantity:order.buyerQuantity}
+  this.setState({orders:this.state.orders.concat(ordersArr)})
+  console.log(this.state.orders)
+
+}
+
+cartSelect=(store)=>{
+    this.setState({selectedCart:store.cartStore} )
+    console.log(this.state.selectedCart)
 
 }
 selectedProduct=(item)=>{
   let product=item.product
 this.setState({selectedProduct:product})
+}////////////////////
+
+ addCartItem = async (item)=>{
+  let product=item.product
+  let Quantity=item.BuyerQuantity
+
+   await this.setState({selectedProduct:product})
+  let arr=[]
+  let cartItem = {buyerQuantity:Quantity, product:this.state.selectedProduct, activeUser:this.state.activeUser}
+
+arr.push(cartItem)
+this.setState({cart:this.state.cart.concat(arr)})
+console.log(this.state.cart)
+
 }
+
+
+
+setBuyerQuantity=(event)=>{
+ this.setState({buyerQuantity:event.target.value})
+}
+
+ 
+  
+
 
 getStore=(store)=>{
     let user=store.user
@@ -116,6 +182,9 @@ this.setState({activeUser:element})
 
 
   }
+  getSelectedOrder=(order)=>{
+    this.setState({selectedOrder:order})
+  }
 
   
   updateUsers=(usersdata)=>{
@@ -131,6 +200,7 @@ this.setState({activeUser:element})
        accountType:usersdata.accountType
        
      }]
+     this.setState({signupSubmited:true})
      this.setState({users:this.state.users.concat(user)})
     }
      
@@ -144,10 +214,10 @@ this.setState({activeUser:element})
     return (
  <HashRouter>
     <div className="App">
-    <MyNavBar logout={this.logout} activeUser={this.state.activeUser} ></MyNavBar>
+    <MyNavBar cart={this.state.cart} getSelectedOrder={this.getSelectedOrder} orders={this.state.orders} cartSelect={this.cartSelect} logout={this.logout} activeUser={this.state.activeUser} products={this.props.products}></MyNavBar>
 
     <Route exact path="/">
-      <HomePage getText={this.getText} getStore={this.getStore}  activeUser={this.state.activeUser} searchText={this.state.searchText}  products={this.state.products}></HomePage>
+      <HomePage getText={this.getText} getStore={this.getStore} setBuyerQuantity={this.setBuyerQuantity} activeUser={this.state.activeUser} searchText={this.state.searchText}  products={this.state.products}></HomePage>
        </Route>
       <Route exact path="/Features">
       <Features></Features>
@@ -159,22 +229,31 @@ this.setState({activeUser:element})
         <About></About>
       </Route>
       <Route exact path="/SignupSeller" >
-        <Signup activeUser={this.state.activeUser} users={this.state.users} updateUsers={this.updateUsers}></Signup>
-        <Route exact path="/Signupcompleted" >
+        <Signup activeUser={this.state.activeUser} signupSubmited={this.state.signupSubmited} users={this.state.users} updateUsers={this.updateUsers}> </Signup>
         </Route>
+
+        <Route exact path="/Signupcompleted" >
+        <ThanksForRegistering></ThanksForRegistering>
+
         </Route>
         <Route exact path="/uploaditems" >
-        <UploadItems activeUser={this.state.activeUser} updateProducts={this.updateProducts}></UploadItems>
+        <UploadItems activeUser={this.state.activeUser} products={this.state.products} updateProducts={this.updateProducts}></UploadItems>
       </Route>
       <Route exact path={`/store/${this.state.selectedStore}`}>
-      <Store getText={this.getText} logout={this.logout} selectedProduct={this.selectedProduct} activeUser={this.state.activeUser} searchText={this.state.searchText} selectedStore={this.state.selectedStore}  products={this.state.products}></Store>
+      <Store getText={this.getText} logout={this.logout} addCartItem={this.addCartItem} setBuyerQuantity={this.setBuyerQuantity} selectedProduct={this.selectedProduct} activeUser={this.state.activeUser} searchText={this.state.searchText} selectedStore={this.state.selectedStore}  products={this.state.products}></Store>
        </Route>
        <Route exact path={`/store/${this.state.selectedStore}/x${this.state.selectedProduct.itemName}`}>
          <ProductDetailsPage selectedProduct={this.state.selectedProduct}></ProductDetailsPage>
        </Route>
-
        
-      
+       <Route exact path={`/cart+${this.state.selectedCart}+${this.state.activeUser.userName}`}>
+         <Checkout createOrder={this.createOrder} selectedCart={this.state.selectedCart} cart={this.state.cart} activeUser={this.state.activeUser}></Checkout>
+       </Route>
+       <Route exact path={`/order/${this.state.activeUser.userName}/${this.state.selectedOrder}`}>
+         <MyIncommingOrders activeUser={this.state.activeUser} selectedOrder={this.state.selectedOrder} orders={this.state.orders}></MyIncommingOrders>
+       </Route>
+   
+     
 
   
       

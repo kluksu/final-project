@@ -13,8 +13,8 @@ export default class UploadItems extends Component {
             itemName:"",
             batch:1,
             minimum:0,
-            price:"",
-            id:"",
+            price:0,
+            id:0,
             currentPicture:"",
             picturesArr:[],
             newFieldsArr:[],
@@ -28,13 +28,7 @@ export default class UploadItems extends Component {
     }
    
   
-  //  deleteForm=(event)=>{
-        
-       
-    //  for (let i = 0; i < this.state.fieldsArr.length; i++) {
-      //    let element = this.state.fieldsArr[i];
-        ///  const result = this.state.fieldsArr.filter( field=> event !== i);
-         // console.log(result)
+ 
 
     
     
@@ -46,17 +40,18 @@ export default class UploadItems extends Component {
           specifics:fieldData.specifics, 
          }]
          this.setState({newFieldsArr:this.state.newFieldsArr.concat(field)});
-         console.log(this.state.newFieldsArr)
    
         }
   
      
     componentDidUpdate(prevProps,prevState){
-        if((this.state.currentPicture!==prevState.currentPicture)||(this.state.fieldDisabled!==prevState.fieldDisabled)){
+        if((this.state.currentPicture!==prevState.currentPicture)){
         let arr=[];
-        arr.push(<img  src="https://i.picsum.photos/id/65/200/200.jpg?hmac=pZrTO_F80X2VYUVpgorpj6xM_WABGhjIXYieK__8B50"  //{`${this.state.currentPicture}`}
-        ></img>)
-        this.setState({picturesArr:this.state.picturesArr.concat(arr)})}
+        arr.push(<img  src="https://picsum.photos/200" //{`${this.state.currentPicture}`}
+        ></img> )
+        this.setState({picturesArr:this.state.picturesArr.concat(arr)})
+        console.log(this.state.currentPicture)
+    }
        
 
     }
@@ -82,10 +77,10 @@ export default class UploadItems extends Component {
     changeQuantity=(event)=>{
         this.setState({quantity:event.target.value})
     }
+  
     render() {
         return (
-            <div>
-                <Container>
+            <div className="formContainer">
                 <Form>
   <Row>
       <Col xl={3} lg={3} md={4} sm={10}>
@@ -153,8 +148,9 @@ export default class UploadItems extends Component {
   <div className="picturesUpload">
   {this.state.picturesArr}
   </div>
+  </Col>
  
-</Col>
+
   
   </Row>
   
@@ -194,7 +190,6 @@ export default class UploadItems extends Component {
   </Row>
  
 </Form>
-</Container>
             </div>
         )
     }

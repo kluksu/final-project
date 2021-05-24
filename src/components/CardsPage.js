@@ -8,11 +8,7 @@ export default class CardsPage extends Component {
        super(props)
        this.state={
            CardsArr:[],
-           
-       }
-   }
- 
-  
+       }}
 
     render() {
         let  Arr=[]
@@ -20,16 +16,16 @@ export default class CardsPage extends Component {
          
         for (let i = 0; i < this.props.products.length; i++) {
             const element = this.props.products[i];
-            if(element.itemName.includes(this.props.searchText)){
+            if(element.itemName.toLowerCase().includes(this.props.searchText.toLowerCase())){
 
-        Arr.push( <Col xl={3} lg={4} md={6} sm={12}><ProductCard selectedProduct={this.props.selectedProduct} getStore={this.props.getStore}  products={this.props.products} selectedStore={this.props.selectedStore} activeUser={this.props.activeUser} product={element}></ProductCard></Col>)
+        Arr.push( <Col xl={3} lg={4} md={6} sm={12} className="cradCol"><ProductCard addCartItem={this.props.addCartItem} setBuyerQuantity={this.props.setBuyerQuantity} selectedProduct={this.props.selectedProduct} getStore={this.props.getStore}  products={this.props.products} selectedStore={this.props.selectedStore} activeUser={this.props.activeUser} product={element}></ProductCard></Col>)
             
       
     }}
 
     return (<>
   <SmartSearch getText={this.props.getText} ></SmartSearch>
-           <Row>
+           <Row className="galleryBackGround">
            {Arr}
            </Row>
            </>
