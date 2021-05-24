@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Col, Container, Form, Row } from 'react-bootstrap'
+import { Button, Col, Container, Form, Nav, Row } from 'react-bootstrap'
 import ThanksForRegistering from './ThanksForRegistering'
 
 export default class Signup extends Component {
@@ -12,8 +12,8 @@ export default class Signup extends Component {
             phone_number:"",
             userName:"",
             address:"",
-            type:""
-
+            type:"",
+            submited:""
 
             
         }
@@ -47,12 +47,16 @@ export default class Signup extends Component {
     ChangePhone_Number=(event)=>{
         this.setState({phone_number:event.target.value})
     }
-    
+    componentDidUpdate(prevProps,prevState){
+      if(this.props.signupSubmited!==prevProps.signupSubmited){
+        window.location.replace("/#/Signupcompleted")  
 
+      }
+    
+    }
  
     render() {
 
- 
        
          
         return (
@@ -103,7 +107,7 @@ export default class Signup extends Component {
     <Form.Control onChange={this.ChangeAddress} type="text" placeholder="Enter Address" />
   </Form.Group>
   </Col>
-  <Form.Group  onChange={this.getValue} as={Row}>
+   <Form.Group  onChange={this.getValue} as={Row}>
       <Form.Label as="legend" column sm={2}>
         account type
       </Form.Label>
@@ -115,7 +119,7 @@ export default class Signup extends Component {
           id="seller"
         />
         <Form.Check
-          type="radio"
+          type="r  adio"
           label="buyer"
           name="formHorizontalRadios"
           id="buyer"
